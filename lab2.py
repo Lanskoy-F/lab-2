@@ -1,40 +1,12 @@
-#1
-def esc(code):
-    return f'\u001b[{code}m'
-red = esc(41)
-blue = esc(44)
-white = esc(47)
-end = esc(0)
-black = esc(40)
-green = esc(42)
-print(red + ' ' * 10 + end + '\n' + white + ' ' * 10 + end + '\n' + blue + ' ' * 10 + end + '\n')
-#2
 import turtle
 import random
-i = turtle.Turtle()
-i.speed(100)
-g = random.randint(1,5)
-for j in range(g):
-    i.right(60)
-    i.forward(100)
-    i.right(120)
-    i.color('white')
-    i.forward(50)
-    i.color('black')
-    i.right(120)
-    i.forward(100)
-    i.right(60)
-    i.right(60)
-    i.forward(100)
-    i.right(120)
-    i.color('white')
-    i.forward(50)
-    i.color('black')
-    i.right(120)
-    i.forward(100)
-    i.right(60)
-turtle.done()
-#3
+import csv
+import os
+
+def esc(code):
+    return f'\u001b[{code}m'
+
+
 def array_init(array_in, st):
     for i in range(10):
         for j in range(10):
@@ -68,7 +40,39 @@ def print_plot(plot):
         line += end
         print(line)
     print(white + '0 1 2 3 4 5 6 7 8 9' + end)
-
+#1
+red = esc(41)
+blue = esc(44)
+white = esc(47)
+end = esc(0)
+black = esc(40)
+green = esc(42)
+print(red + ' ' * 10 + end + '\n' + white + ' ' * 10 + end + '\n' + blue + ' ' * 10 + end + '\n')
+#2
+i = turtle.Turtle()
+i.speed(100)
+g = random.randint(1,5) #количество узоров
+for j in range(g):
+    i.right(60)
+    i.forward(100)
+    i.right(120)
+    i.color('white')
+    i.forward(50)
+    i.color('black')
+    i.right(120)
+    i.forward(100)
+    i.right(60)
+    i.right(60)
+    i.forward(100)
+    i.right(120)
+    i.color('white')
+    i.forward(50)
+    i.color('black')
+    i.right(120)
+    i.forward(100)
+    i.right(60)
+turtle.done()
+#3
 array_plot = [[0 for col in range(10)] for row in range(10)]
 result = [0 for i in range(10)]
 
@@ -81,15 +85,14 @@ array_fill(array_plot, result, step)
 print_plot(array_plot)
 print('\n')
 #4
-import csv
-m = 0
+m = 0 #с помощью этой переменной будем считать количество книг до 1995 включительно
 with open('j.csv',newline= '') as csvfile:
     reader = csv.DictReader(csvfile,delimiter=";")
     for row in reader:
         if int(row['Year-Of-Publication']) <= 1995:
             m +=1
-x = round(m / 9409 * 100, 1)
-y = 100 - x
+x = round(m / 9409 * 100, 1)   #количество книг до 1995 включительно в %
+y = 100 - x #количество книг после 1995 в %
 
 if x < y:
     print(white + str(y) + '  '*4 + black + ' '*3 + white + ' '*1 + end)
@@ -103,8 +106,11 @@ if x > y:
     print(white + str(y) + black + ' '*3 + white + ' '*5 + black + ' '*3 + white + ' '*1   + end)
     print(white + '  '*2 + black + ' '*3 + white + ' '*5 + black + ' '*3 + white + ' '*1 + end)
     print(white + ' до 1995   после' + end)
+if x == y:
+    print(white + str(x) + black + ' '*3 + white + ' '*5 + black + ' '*3 + white + ' '*1 + end)
+    print(white + '  ' * 2 + black + ' ' * 3 + white + ' ' * 5 + black + ' ' * 3 + white + ' ' * 1 + end)
+    print(white + ' до 1995   после' + end)
 #5
-import os
 os.system("clear")
 print('         ' + green + ' '*6 + end)
 print('       ' + green + ' '*14 + end)
@@ -120,4 +126,3 @@ print('         ' + green + ' '*6 + end)
 print('       ' + green + ' '*14 + end + ' '*6 + white + ' '*3 + end)
 print('       ' + green + ' '*9 + end)
 print('       ' + black + ' '*9 + end)
-
